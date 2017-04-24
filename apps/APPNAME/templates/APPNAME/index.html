@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login & Reg | Home</title>
+    <style type="text/css">
+      .errors{
+        color:red;
+      }
+    </style>
+  </head>
+  <body>
+    {% for i in request.session.errors %}
+    <h3 class='errors'>{{i}}</h3>
+    {% endfor %}
+    <h2>Registration</h2>
+    <form action="/register/" method="post">
+      {% csrf_token %}
+      First Name: <input type="text" name="reg_first_name">
+      Last Name: <input type="text" name="reg_last_name">
+      Email: <input type="text" name="reg_email">
+      Password: <input type="password" name="reg_password">
+      Confirm pw: <input type="password" name="reg_password_confirm">
+      <input type="submit" name="reg_submit" value="Register">
+    </form>
+    <h2>Login</h2>
+    <form action="/login/" method="post">
+      {% csrf_token %}
+      Email: <input type="text" name="log_email">
+      Password: <input type="password" name="log_password">
+      <input type="submit" name="log_submit" value="Login">
+    </form>
+  </body>
+</html>
